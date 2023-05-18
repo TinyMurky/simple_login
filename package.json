@@ -1,0 +1,19 @@
+{
+  "name": "simple_login",
+  "version": "1.0.0",
+  "description": "display cool login page demo",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TinyMurky/simple_login.git"
+  },
+  "author": "TinyMurky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TinyMurky/simple_login/issues"
+  },
+  "homepage": "https://github.com/TinyMurky/simple_login#readme"
+}

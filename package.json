@@ -4,6 +4,9 @@
   "description": "display cool login page demo",
   "main": "app.js",
   "scripts": {
+    "start":"node app.js",
+    "dev":"nodemon app.js",
+    "seed":"node ./models/seeds/userSeeder.js",
     "test": "jest"
   },
   "type":"module",

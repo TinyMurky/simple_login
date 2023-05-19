@@ -1,0 +1,130 @@
+* {
+    margin:0px;
+    padding:0px;
+    box-sizing:border-box;
+ }
+
+ *:focus {
+     outline:none;
+ }
+
+body{
+    /*Position*/
+    position: relative;
+    /*flex*/
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    /*box-model*/
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    /*style*/
+    font-family: 'roboto', sans-serif;
+    background: url("/images/night_city.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
+.form {
+    /*box-model*/
+    width:400px;
+    height: auto;
+    /*style*/
+    color:#ffffff;
+    font-family: 'roboto', sans-serif;
+}
+
+.heading{
+    /*position*/
+    position:relative;
+    /*box-model*/
+    margin-bottom: 50px;
+    /*style*/
+    opacity:0;
+    text-align:center;
+    color:#ffffff;
+    font-size:80px;
+    font-weight:300;
+    text-transform:capitalize;
+}
+
+input, .submit-btn{
+    /*position*/
+    position:relative;
+    /*display*/
+    display:block;
+    /*box-model*/
+    width:80%;
+    height:35px;
+    margin: 20px auto;
+    padding: 15px;
+    /*border-style*/
+    border:none;
+    border-radius: 5px;
+    /*other-style*/
+    opacity:0;
+    background: rgba(255, 255, 255, 0.3);
+    color:#ffffff;
+    transition: 0.3s;
+    text-transform: none;
+}
+
+input::placeholder{
+    color:#ffffff;
+}
+
+input:focus{
+    background-color: rgba(255, 255, 255, 0.5);
+    color:#FFF;
+    text-transform:none;
+}
+input:focus::placeholder{
+    color:#BBB;
+}
+
+.submit-btn{
+    width:auto;
+    padding: 0 20px;
+    cursor: pointer;
+    margin: 50px auto 0;
+    opacity: 0;
+}
+
+.submit-btn:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.link {
+    display:block;
+    margin: 20px auto;
+    text-align: center;
+    text-transform: capitalize;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.link:hover{
+    color: #fff;
+}
+
+.alert-box{
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 150px;
+    max-width: 90%;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    text-transform: capitalize;
+    background: rgb(255, 119, 119);
+    border-top: 10px solid rgb(255, 37, 37);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+    font-family: 'roboto', sans-serif;
+    text-align: center;
+    transition: 1s;
+}

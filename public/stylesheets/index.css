@@ -1,0 +1,66 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    position: relative;
+    /*display*/
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    /*box-model*/
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    /*style*/
+    font-family: 'roboto', sans-serif;
+    background: url("/images/night_city.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.logout {
+    /*Position*/
+    position: absolute;
+    top: 10px;
+    right: 0;
+    /*display*/
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    /*box-model*/
+    padding: 10px 20px;
+    /*font-style*/
+    text-transform: capitalize;
+    text-decoration: underline;
+    color: #fff;
+    font-size: 28px;
+    /*other-style*/
+    background: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+.container{
+    /*Position*/
+    position:relative;
+    /*flex*/
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /*box-model*/
+    width:90%;
+    height:87vh;
+    border: solid 5px #ffffff;
+}
+.greeting{
+    /*Position*/
+    position:relative;
+    /*font-style*/
+    text-transform: capitalize;
+    color: #ffffff;
+    font-size: 100px;
+    font-weight: 800;
+}

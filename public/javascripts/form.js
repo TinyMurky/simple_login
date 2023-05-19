@@ -5,6 +5,11 @@ const formEmail = document.querySelector(".email")
 const formPassword = document.querySelector(".password")
 const subButton = document.querySelector(".submit-btn")
 
+/*
+window.onload = () => {
+  location.href = "/"
+}
+*/
 submitForm.forEach((item, index) => {
   setTimeout(() => {
     item.style.opacity = 1
@@ -28,8 +33,15 @@ async function submit() {
   } else {
     response = await postForm("/login", data)
   }
-  console.log(response)
-  alertBox(response.alert)
+  if (response.redirected) {
+    window.location.href = response.url
+  } else {
+    //response is an promise
+    //respnse.json().then() can get the alert message
+    response.json().then((alertObject) => {
+      alertBox(alertObject.alert)
+    })
+  }
 }
 
 async function postForm(url = "", data = {}) {
@@ -53,7 +65,7 @@ async function postForm(url = "", data = {}) {
       referrerPolicy: "no-referrer",
       body: formBody.join("&"),
     })
-    return response.json()
+    return response
   } catch (error) {
     console.error("Error in fetching POST to server", error)
     throw Error(error)

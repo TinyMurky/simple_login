@@ -56,9 +56,19 @@ router.get("/login", async (req, res) => {
   return res.render("login", setting.login)
 })
 
-router.post("/register", (req, res) => {
-  console.log(req.body)
-  res.send({ alert: "happy day" })
+router.post("/register", async (req, res) => {
+  try {
+    res.clearCookie("login_passport")
+    const newUser = {
+      firstName: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    }
+    await User.create(newUser)
+    return res.redirect(303, "/login")
+  } catch (error) {
+    return res.send(error.message)
+  }
 })
 router.post("/login", async (req, res) => {
   try {

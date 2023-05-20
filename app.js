@@ -14,5 +14,5 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(secretWord))
 app.use(routes)
 app.listen(PORT, () => {
-  ;`Server: ${ROOT} started`
+  console.log(`Server: ${ROOT} started`)
 })

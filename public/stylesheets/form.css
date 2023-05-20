@@ -97,6 +97,7 @@ input:focus::placeholder{
 }
 
 .link {
+    opacity:0;
     display:block;
     margin: 20px auto;
     text-align: center;

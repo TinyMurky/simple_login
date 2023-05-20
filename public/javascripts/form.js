@@ -13,7 +13,7 @@ window.onload = () => {
 submitForm.forEach((item, index) => {
   setTimeout(() => {
     item.style.opacity = 1
-  }, index * 350)
+  }, index * 200)
 })
 
 subButton.addEventListener("click", submit)

@@ -1,7 +1,8 @@
 import express from "express"
 import { User } from "../../models/user.js"
 import { ROOT } from "../../app.js"
-import { nanoid } from "nanoid"
+import { checkIsLogin, loginValidate } from "../../plugins/loginValidation.js"
+import { createUser } from "../../plugins/createUser.js"
 const router = express.Router()
 const oneDay = 86400000
 const setting = {
@@ -22,19 +23,15 @@ const setting = {
     title: "Login",
   },
 }
+
 router.get("/", async (req, res) => {
   //if session direct to login
-  if (req.signedCookies && req.signedCookies.login_passport) {
-    const loginPassport = req.signedCookies.login_passport
-    const sessionUser = await User.findOne({
-      sessionID: loginPassport,
-    }).exec()
-    if (sessionUser && sessionUser.updatedAt - Date.now() < oneDay) {
-      setting.index.name = sessionUser.firstName
-      return res.render("index", setting.index)
-    }
+  const isLogin = await checkIsLogin(req, setting, oneDay)
+  if (isLogin) {
+    return res.render("index", setting.index)
+  } else {
+    return res.redirect(303, "/login")
   }
-  return res.redirect(303, "/login")
 })
 
 router.get("/register", (req, res) => {
@@ -42,29 +39,18 @@ router.get("/register", (req, res) => {
 })
 router.get("/login", async (req, res) => {
   //if session direct to login
-  if (req.signedCookies && req.signedCookies.login_passport) {
-    const loginPassport = req.signedCookies.login_passport
-    const sessionUser = await User.findOne({
-      sessionID: loginPassport,
-    }).exec()
-    if (sessionUser && sessionUser.updatedAt - Date.now() < oneDay) {
-      setting.index.name = sessionUser.firstName
-      return res.redirect(303, "/")
-    }
+  const isLogin = await checkIsLogin(req, setting, oneDay)
+  if (isLogin) {
+    return res.redirect(303, "/")
+  } else {
+    return res.render("login", setting.login)
   }
-  //if fail session check
-  return res.render("login", setting.login)
 })
 
 router.post("/register", async (req, res) => {
   try {
     res.clearCookie("login_passport")
-    const newUser = {
-      firstName: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    }
-    await User.create(newUser)
+    await createUser(req)
     return res.redirect(303, "/login")
   } catch (error) {
     return res.send(error.message)
@@ -73,25 +59,12 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     //login
-    const loginData = req.body
-    const loginUser = await User.findOne({ email: loginData.email }).exec()
-    if (loginUser && loginUser.password === loginData.password) {
-      //cookie code
-      const sessionID = nanoid()
-      loginUser.sessionID = sessionID
-      loginUser.save()
-      res.cookie("login_passport", sessionID, {
-        expires: new Date(Date.now() + oneDay),
-        signed: true,
-      })
-      //Fetch 一定要用 status 3xx才可以redirect
-      //https://stackoverflow.com/questions/39735496/redirect-after-a-fetch-post-call
-      setting.index.name = loginUser.firstName
+    const passLoginValid = await loginValidate(req, res, setting, oneDay)
+    if (passLoginValid) {
       return res.redirect(303, "/")
     } else {
       return res.send({ alert: "Email or Password Incorrect" })
     }
-    console.log(req.body)
   } catch (error) {
     res.send({ alert: error.message })
   }

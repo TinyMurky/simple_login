@@ -20,16 +20,29 @@
     ```
     mongodb+srv://<您的帳號名稱>:<password>@<您的Cluster連結>/users?retryWrites=true&w=majority
     ```
+7. 接著建立預設帳號:
+    ```bash
+    npm run seed
+    ```
 
-7. 建立完後，於終端機輸入：
+    使用者資料為: 
+    |Name|Email|Password|
+    |:---|:----|:-------|
+    |Tony|tony@stark.com||iamironman|
+    |Steve|captain@hotmail.com|icandothisallday|
+    |Peter|peter@parker.com|enajyram|
+    |Natasha|natasha@gamil.com|*parol#@$!|
+    |Nick|nick@shield.com|password|
+8. 建立完後，於終端機輸入：
     ```bash
     npm run start
     ```
-8. 若看見此行訊息則代表順利運行，打開瀏覽器進入到以下網址:
+9. 若看見此行訊息則代表順利運行，打開瀏覽器進入到以下網址:
     ```bash
     Server localhost:3000 started.
     ```
-9. 若欲暫停請於終端機使用:
+10. 可以使用第7點的email與密碼登入看看
+11. 若欲暫停請於終端機使用:
     ```bash
     ctrl + c
     ```

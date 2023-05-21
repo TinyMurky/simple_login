@@ -28,7 +28,7 @@
     使用者資料為: 
     |Name|Email|Password|
     |:---|:----|:-------|
-    |Tony|tony@stark.com||iamironman|
+    |Tony|tony@stark.com|iamironman|
     |Steve|captain@hotmail.com|icandothisallday|
     |Peter|peter@parker.com|enajyram|
     |Natasha|natasha@gamil.com|*parol#@$!|

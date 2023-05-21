@@ -1,5 +1,7 @@
 # Readme
 ![](./README/demo.gif)
+## 簡介
+本專案嘗試利用Cookie手刻登入畫面，後端僅使用cookie-parser套件，前端使用fetch代替form，不使用express-session與passport套件，暫不考慮安全性問題
 
 ## Installing - 專案安裝流程
 
